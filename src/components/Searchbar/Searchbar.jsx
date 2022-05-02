@@ -1,15 +1,14 @@
 const Searchbar = ({ handelChange, value, handleSubmit }) => (
   <header>
-    <form>
-      <button type="submit" onClick={handleSubmit}>
+    <form onSubmit={handleSubmit}>
+      <button type="submit" >
         <span>Search</span>
       </button>
 
       <input
         type="text"
         placeholder="Search images and photos"
-        value={value}
-        onChange={handelChange}
+        name="query"
       />
     </form>
   </header>
