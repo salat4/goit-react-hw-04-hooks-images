@@ -1,4 +1,4 @@
-const Searchbar = ({ handelChange, value, handleSubmit }) => (
+const Searchbar = ({  handleSubmit }) => (
   <header>
     <form onSubmit={handleSubmit}>
       <button type="submit" >

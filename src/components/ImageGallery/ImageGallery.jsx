@@ -1,24 +1,15 @@
-import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
-// import Modal from "../Modal/Modal";
 
-const ImageGallery = ({
-  articles,
-}) => (
-  <>
-    <ul>
-      
+import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
+const ImageGallery = ({articles}) => (
+    <ul> 
       {articles.map(({ id, webformatURL, tags, largeImageURL }) => (
         <ImageGalleryItem
           id={id}
           previewURL={webformatURL}
           tags={tags}
-          // largeImageURL={largeImageURL}
-          // handleModalOpen={handleModalOpen}
-          // handleModalClose={handleModalClose}
-          // openModal={openModal}
+          largeImageURL={largeImageURL}
         />
       ))}
     </ul>
-  </>
 );
 export default ImageGallery;
