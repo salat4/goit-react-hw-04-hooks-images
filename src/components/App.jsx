@@ -2,7 +2,6 @@ import { useState, useEffect,useRef } from 'react';
 import axios from 'axios';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
-import MyLoader from './Loader/Loader';
 import Button from './Button/Button';
 
 axios.defaults.baseURL = 'https://pixabay.com/api/';
