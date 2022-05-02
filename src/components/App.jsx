@@ -12,10 +12,16 @@ export const App = () => {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
+  const [totalHits , setTotalHits] = useState()
 
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if(query === ""){
+      return alert("Введіть слово");
+    }
     setPage(1);
     setQuery(e.target.elements.query.value);
     setArticles([]);
@@ -27,13 +33,20 @@ export const App = () => {
   const mounted = useRef();
   useEffect(() => {
     async function fetchData() {
+      setIsLoading(true)
+
       try {
         const response = await axios.get(
           `?q=${query}&page=${page}&key=25099977-05a832f59cefe7e3a7990f935&image_type=photo&orientation=horizontal&per_page=12`
         );
+        
         setArticles(prevArticles => [...prevArticles, ...response.data.hits]);
+        setTotalHits(response.data.totalHits)
       } catch (error) {
         setError(error);
+      }
+      finally{
+        setIsLoading(true)
       }
     }
     if(!mounted.current){
@@ -49,8 +62,14 @@ export const App = () => {
   return (
     <div>
       <Searchbar handleSubmit={handleSubmit} />
-      <ImageGallery articles={articles} />
-      <Button loadMore={loadMore} />
+    {isLoading &&  <ImageGallery articles={articles} />}
+
+     {query !== "" && (
+       totalHits !== articles.length &&(
+        <Button loadMore={loadMore} />
+
+       )
+     )}
      
     </div>
   );
