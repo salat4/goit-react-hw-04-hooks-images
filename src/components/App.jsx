@@ -28,7 +28,6 @@ export const App = () => {
   const mounted = useRef();
   useEffect(() => {
     async function fetchData() {
-      setIsLoading(true)
 
       try {
         const response = await axios.get(
@@ -40,9 +39,7 @@ export const App = () => {
       } catch (error) {
         alert(error);
       }
-      finally{
-        setIsLoading(false)
-      }
+
     }
     if(!mounted.current){
       mounted.current = true
