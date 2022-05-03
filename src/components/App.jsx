@@ -3,6 +3,7 @@ import axios from 'axios';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
+import Loader from './Loader/Loader'
 
 axios.defaults.baseURL = 'https://pixabay.com/api/';
 
@@ -10,17 +11,12 @@ export const App = () => {
   const [articles, setArticles] = useState([]);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  // const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false)
   const [totalHits , setTotalHits] = useState()
 
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    if(query === ""){
-      return alert("Введіть слово");
-    }
     setPage(1);
     setQuery(e.target.elements.query.value);
     setArticles([]);
@@ -45,7 +41,7 @@ export const App = () => {
         alert(error);
       }
       finally{
-        setIsLoading(true)
+        setIsLoading(false)
       }
     }
     if(!mounted.current){
@@ -55,13 +51,13 @@ export const App = () => {
           fetchData()
         }
     
-  }, [ page, query]);
+  }, [page, query]);
 
  
   return (
     <div>
       <Searchbar handleSubmit={handleSubmit} />
-    {isLoading &&  <ImageGallery articles={articles} />}
+    {isLoading ?  ( <Loader/>) : (<ImageGallery articles={articles} />)}
 
      {query !== "" && (
        totalHits !== articles.length &&(
