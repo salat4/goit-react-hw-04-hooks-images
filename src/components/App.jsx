@@ -54,7 +54,7 @@ export const App = () => {
   return (
     <div>
       <Searchbar handleSubmit={handleSubmit} />
-    {isLoading ?  ( <Loader/>) : (<ImageGallery articles={articles} />)}
+   <ImageGallery articles={articles} />
 
      {query !== "" && (
        totalHits !== articles.length &&(
