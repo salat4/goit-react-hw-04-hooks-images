@@ -11,7 +11,7 @@ export const App = () => {
   const [articles, setArticles] = useState([]);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false)
+  // const [isLoading, setIsLoading] = useState(false)
   const [totalHits , setTotalHits] = useState()
 
 
