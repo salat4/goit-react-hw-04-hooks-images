@@ -10,7 +10,7 @@ export const App = () => {
   const [articles, setArticles] = useState([]);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false)
   const [totalHits , setTotalHits] = useState()
 
@@ -42,7 +42,7 @@ export const App = () => {
         setArticles(prevArticles => [...prevArticles, ...response.data.hits]);
         setTotalHits(response.data.totalHits)
       } catch (error) {
-        setError(error);
+        alert(error);
       }
       finally{
         setIsLoading(true)
