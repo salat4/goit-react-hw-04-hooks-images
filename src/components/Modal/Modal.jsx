@@ -4,6 +4,9 @@ import { useEffect } from 'react';
 const Modal = ({onClose,largeImageURL,handleModalEsc})=> {
 useEffect(()=>{
     window.addEventListener("keydown", handleModalEsc, false);
+    return () =>{
+        window.removeEventListener("keydown", handleModalEsc, false);
+    }
 })
     return (
         <div className={styles.Overlay} onClick={onClose} onKeyDown={handleModalEsc} tabIndex={0}>
